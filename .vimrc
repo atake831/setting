@@ -369,6 +369,8 @@ noremap ma 0
 noremap me $
 noremap md %
 inoremap <C-j> <Down>
+inoremap <C-d> <C-h>
+inoremap <C-h> <Left>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 

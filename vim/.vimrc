@@ -1,4 +1,31 @@
 set nocompatible
+filetype off
+
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+endif
+
+call neobundle#rc(expand('~/.bundle'))
+
+NeoBundle 'thinca/vim-quickrun' 
+let g:quickrun_config={'*': {'split': 'vertical'}}
+set splitright
+
+NeoBundle 'git://github.com/kien/ctrlp.vim.git'
+NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
+NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
+
+
+
+filetype plugin on
+filetype indent on
+
+set nocompatible
 scriptencoding cp932
 "scriptencodingと、このファイルのエンコーディングが一致するよう注意！
 "scriptencodingは、vimの内部エンコーディングと同じものを推奨します。

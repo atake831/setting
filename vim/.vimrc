@@ -15,12 +15,30 @@ set splitright
 NeoBundle 'git://github.com/kien/ctrlp.vim.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+"NeoBundle 'git://github.com/scrooloose/syntastic.git'
+"Jlet g:syntastic_enable_signs=1
+"let g:syntastic_auto_loc_list=2
+"let g:syntastic_enable_perl_checker = 1
 NeoBundle 'Shougo/neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'Shougo/neosnippet'
+
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)"
+            \: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)"
+            \: "\<TAB>"
+
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+if has('conceal')
+      set conceallevel=2 concealcursor=i
+  endif
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
-
-
 
 filetype plugin on
 filetype indent on
@@ -378,7 +396,7 @@ endif
 "----------------------------------------
 " 一時設定
 "---------------------------------------
-inoremap jj <Esc>
+inoremap jj <ESC>
 set matchpairs& matchpairs+=<:>
 set smartindent
 set smarttab

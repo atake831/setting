@@ -1,3 +1,12 @@
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+
+
 set nocompatible
 filetype off
 
@@ -12,6 +21,10 @@ NeoBundle 'thinca/vim-quickrun'
 let g:quickrun_config={'*': {'split': 'vertical'}}
 set splitright
 
+NeoBundle "tyru/caw.vim.git"
+nmap <Leader>c <Plug>(caw:i:toggle)
+vmap <Leader>c <Plug>(caw:i:toggle)
+
 NeoBundle 'git://github.com/kien/ctrlp.vim.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
@@ -22,6 +35,8 @@ NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 NeoBundle 'Shougo/neosnippet'
+
+NeoBundle 'vim-scripts/yanktmp.vim'
 
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
             \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -44,7 +59,9 @@ filetype plugin on
 filetype indent on
 
 set nocompatible
-scriptencoding cp932
+"scriptencoding cp932
+scriptencoding utf-8
+set fileencodings=utf8,iso-2022-jp,cp932,euc-jp
 "scriptencodingと、このファイルのエンコーディングが一致するよう注意！
 "scriptencodingは、vimの内部エンコーディングと同じものを推奨します。
 "改行コードは set fileformat=unix に設定するとunixでも使えます。
@@ -202,7 +219,6 @@ if has('iconv')
 else
   set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).(&bomb?':BOM':'').']['.&ff.']'}%=\ (%v,%l)/%L%8P\ 
 endif
-
 function! FencB()
   let c = matchstr(getline('.'), '.', col('.') - 1)
   let c = iconv(c, &enc, &fenc)
@@ -413,9 +429,22 @@ imap <> <><Left>
 noremap ma 0
 noremap me $
 noremap md %
-inoremap <C-j> <Down>
 inoremap <C-d> <C-h>
 inoremap <C-h> <Left>
-inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
+map <silent> my :call YanktmpYank()<CR> 
+map <silent> mp :call YanktmpPaste_p()<CR>
+map <silent> mP :call YanktmpPaste_P()<CR>
+
+noremap 1 :bN<cr>
+noremap 2 :bn<cr>
+noremap mw :bd<cr>
+
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+noremap <silent> ,uy :<C-u>Unite history/yank<CR>
+noremap <silent> ,ub :<C-u>Unite buffer<CR>
+noremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+noremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>

@@ -2,20 +2,12 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-
-
+call neobundle#end()
 
 set nocompatible
 filetype off
-
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-endif
-
-call neobundle#rc(expand('~/.bundle'))
 
 NeoBundle 'thinca/vim-quickrun' 
 let g:quickrun_config={'*': {'split': 'vertical'}}
@@ -26,7 +18,6 @@ nmap <Leader>c <Plug>(caw:i:toggle)
 vmap <Leader>c <Plug>(caw:i:toggle)
 
 NeoBundle 'git://github.com/kien/ctrlp.vim.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 "NeoBundle 'git://github.com/scrooloose/syntastic.git'
 "Jlet g:syntastic_enable_signs=1

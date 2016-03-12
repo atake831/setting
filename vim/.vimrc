@@ -5,8 +5,6 @@ endif
 call neobundle#rc(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-
-
 set nocompatible
 filetype off
 
@@ -54,6 +52,9 @@ if has('conceal')
   endif
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'wavded/vim-stylus'
+NeoBundle 'wavded/vim-jade'
 
 filetype plugin on
 filetype indent on
@@ -446,5 +447,7 @@ let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 noremap <silent> ,uy :<C-u>Unite history/yank<CR>
 noremap <silent> ,ub :<C-u>Unite buffer<CR>
-noremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+noremap <silent> ,ud :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 noremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+noremap <silent> ,uc :<C-u>Unite file<CR>
+noremap <silent> ,uu :<C-u>Unite file_mru<CR>

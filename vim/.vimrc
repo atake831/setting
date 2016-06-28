@@ -16,6 +16,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
     NeoBundle 'Shougo/neomru.vim'
     NeoBundle 'wavded/vim-stylus'
     NeoBundle 'wavded/vim-jade'
+    NeoBundle 'leafgarland/typescript-vim'
 call neobundle#end()
 
 set nocompatible
@@ -205,8 +206,8 @@ set matchpairs& matchpairs+=<:>
 set smartindent
 set smarttab
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 imap {} {}<Left>
 imap [] []<Left>
 imap () ()<Left>
